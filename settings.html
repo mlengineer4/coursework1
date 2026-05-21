@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <title>FocusTomato — Настройки</title>
+    <link rel="stylesheet" href="style.css">
+    <script src="script.js" defer></script>
+</head>
+<body>
+
+<div class="app">
+
+    <header class="header">
+        <div class="brand">
+            <div class="logo">🍅</div>
+            <div>
+                <h1>FocusTomato</h1>
+                <p>визуальный Pomodoro таймер</p>
+            </div>
+        </div>
+
+        <nav class="nav">
+            <a class="nav-link" href="index.html">Таймер</a>
+            <a class="nav-link" href="stats.html">Статистика</a>
+            <a class="nav-link" href="about.html">О методе</a>
+            <a class="nav-link active" href="settings.html">Настройки</a>
+        </nav>
+    </header>
+
+    <main class="page-animation">
+
+        <section class="page-card settings-card">
+            <p class="small-title">Параметры</p>
+            <h2>Настройки таймера</h2>
+
+            <p class="page-text">
+                Здесь можно изменить длительность рабочего интервала и перерыва.
+                После сохранения настройки применятся на странице таймера.
+            </p>
+
+            <div class="settings-form">
+                <label>
+                    Минут работы:
+                    <input type="number" id="workInput" min="1" value="25">
+                </label>
+
+                <label>
+                    Минут перерыва:
+                    <input type="number" id="breakInput" min="1" value="5">
+                </label>
+
+                <button class="main-btn" id="saveSettingsBtn">Сохранить настройки</button>
+
+                <p class="save-message" id="saveMessage"></p>
+            </div>
+        </section>
+
+    </main>
+
+    <footer class="footer">
+        <p>Настройки сохраняются в браузере</p>
+    </footer>
+
+</div>
+
+</body>
+</html>

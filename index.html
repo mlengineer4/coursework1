@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <title>FocusTomato — Таймер</title>
+    <link rel="stylesheet" href="style.css">
+    <script src="script.js" defer></script>
+</head>
+<body>
+
+<div class="app">
+
+    <header class="header">
+        <div class="brand">
+            <div class="logo">🍅</div>
+            <div>
+                <h1>FocusTomato</h1>
+                <p>визуальный Pomodoro таймер</p>
+            </div>
+        </div>
+
+        <nav class="nav">
+            <a class="nav-link active" href="index.html">Таймер</a>
+            <a class="nav-link" href="stats.html">Статистика</a>
+            <a class="nav-link" href="about.html">О методе</a>
+            <a class="nav-link" href="settings.html">Настройки</a>
+        </nav>
+    </header>
+
+    <main class="page-animation">
+
+        <section class="hero-grid">
+
+            <div class="timer-card">
+                <p class="small-title">Текущий режим</p>
+                <h2 id="modeTitle">Работа</h2>
+
+                <div class="circle" id="circle">
+                    <div class="circle-center">
+                        <div class="time" id="time">25:00</div>
+                        <p id="timerStatus">Готов к старту</p>
+                    </div>
+                </div>
+
+                <div class="mode-buttons">
+                    <button class="mode-btn active" id="workBtn">Работа</button>
+                    <button class="mode-btn" id="breakBtn">Перерыв</button>
+                </div>
+
+                <div class="control-buttons">
+                    <button class="main-btn" id="startBtn">Старт</button>
+                    <button id="pauseBtn">Пауза</button>
+                    <button id="resetBtn">Сброс</button>
+                </div>
+            </div>
+
+            <div class="info-panel">
+                <div class="badge">FOCUS MODE</div>
+
+                <h2>Работай спокойно и без отвлечений</h2>
+
+                <p>
+                    Pomodoro помогает разделить работу на короткие интервалы.
+                    После каждого рабочего периода можно сделать небольшой перерыв.
+                </p>
+
+                <div class="features">
+                    <div class="feature">
+                        <div class="feature-icon">⏱️</div>
+                        <div>
+                            <h3>Визуальный таймер</h3>
+                            <p>Круг показывает прогресс текущего интервала.</p>
+                        </div>
+                    </div>
+
+                    <div class="feature">
+                        <div class="feature-icon">🎯</div>
+                        <div>
+                            <h3>Фокус на задаче</h3>
+                            <p>Один интервал — одна конкретная цель.</p>
+                        </div>
+                    </div>
+
+                    <div class="feature">
+                        <div class="feature-icon">☕</div>
+                        <div>
+                            <h3>Перерывы</h3>
+                            <p>Отдых помогает сохранять продуктивность.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="mini-stats">
+                    <div>
+                        <span id="smallPomodoroCount">0</span>
+                        <p>Pomodoro</p>
+                    </div>
+
+                    <div>
+                        <span id="smallFocusMinutes">0</span>
+                        <p>минут фокуса</p>
+                    </div>
+                </div>
+            </div>
+
+        </section>
+
+    </main>
+
+    <footer class="footer">
+        <p>Курсовая работа: разработка веб-интерфейса сайта визуального таймера Pomodoro</p>
+    </footer>
+
+</div>
+
+</body>
+</html>
