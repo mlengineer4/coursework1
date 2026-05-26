@@ -1,4 +1,4 @@
-// Главные переменные таймера
+// Переменные таймера
 var workMinutes = 25;
 var breakMinutes = 5;
 
@@ -9,7 +9,7 @@ var remainingSeconds = totalSeconds;
 var timer = null;
 
 
-// Когда страница загрузилась, запускаем нужные функции
+// Запуск после загрузки страницы
 window.onload = function () {
     loadSettings();
 
@@ -21,7 +21,7 @@ window.onload = function () {
 };
 
 
-// Загрузка настроек из браузера
+// Настройки
 function loadSettings() {
     var savedWork = localStorage.getItem("workMinutes");
     var savedBreak = localStorage.getItem("breakMinutes");
@@ -39,7 +39,7 @@ function loadSettings() {
 }
 
 
-// Получение количества завершённых Pomodoro
+// Статистика
 function getPomodoroCount() {
     var value = localStorage.getItem("pomodoroCount");
 
@@ -51,7 +51,6 @@ function getPomodoroCount() {
 }
 
 
-// Получение количества минут фокуса
 function getFocusMinutes() {
     var value = localStorage.getItem("focusMinutes");
 
@@ -63,18 +62,16 @@ function getFocusMinutes() {
 }
 
 
-// Сохранение статистики
 function saveStats(pomodoroCount, focusMinutes) {
     localStorage.setItem("pomodoroCount", pomodoroCount);
     localStorage.setItem("focusMinutes", focusMinutes);
 }
 
 
-// Инициализация страницы таймера
+// Страница таймера
 function initTimerPage() {
     var timeText = document.getElementById("time");
 
-    // Если элемента time нет, значит это не страница таймера
     if (timeText === null) {
         return;
     }
@@ -97,7 +94,7 @@ function initTimerPage() {
 }
 
 
-// Обновление времени на экране
+// Обновление интерфейса
 function updateTime() {
     var timeText = document.getElementById("time");
 
@@ -116,7 +113,6 @@ function updateTime() {
 }
 
 
-// Обновление визуального круга
 function updateCircle() {
     var circle = document.getElementById("circle");
 
@@ -139,7 +135,7 @@ function updateCircle() {
 }
 
 
-// Запуск таймера
+// Управление таймером
 function startTimer() {
     var timerStatus = document.getElementById("timerStatus");
 
@@ -164,7 +160,6 @@ function startTimer() {
 }
 
 
-// Пауза таймера
 function pauseTimer() {
     var timerStatus = document.getElementById("timerStatus");
 
@@ -177,7 +172,6 @@ function pauseTimer() {
 }
 
 
-// Сброс таймера
 function resetTimer() {
     var timerStatus = document.getElementById("timerStatus");
 
@@ -201,7 +195,6 @@ function resetTimer() {
 }
 
 
-// Завершение таймера
 function finishTimer() {
     clearInterval(timer);
     timer = null;
@@ -227,7 +220,7 @@ function finishTimer() {
 }
 
 
-// Режим работы
+// Режимы
 function setWorkMode() {
     var modeTitle = document.getElementById("modeTitle");
     var timerStatus = document.getElementById("timerStatus");
@@ -259,7 +252,6 @@ function setWorkMode() {
 }
 
 
-// Режим перерыва
 function setBreakMode() {
     var modeTitle = document.getElementById("modeTitle");
     var timerStatus = document.getElementById("timerStatus");
@@ -291,11 +283,10 @@ function setBreakMode() {
 }
 
 
-// Инициализация страницы статистики
+// Страница статистики
 function initStatsPage() {
     var pomodoroCountText = document.getElementById("pomodoroCount");
 
-    // Если такого элемента нет, значит это не страница статистики
     if (pomodoroCountText === null) {
         return;
     }
@@ -311,7 +302,6 @@ function initStatsPage() {
 }
 
 
-// Обновление страницы статистики
 function updateStatsPage() {
     var pomodoroCountText = document.getElementById("pomodoroCount");
     var focusMinutesText = document.getElementById("focusMinutes");
@@ -337,7 +327,6 @@ function updateStatsPage() {
 }
 
 
-// Мини-статистика на главной странице
 function updateMiniStats() {
     var smallPomodoroCount = document.getElementById("smallPomodoroCount");
     var smallFocusMinutes = document.getElementById("smallFocusMinutes");
@@ -351,11 +340,10 @@ function updateMiniStats() {
 }
 
 
-// Инициализация страницы настроек
+// Страница настроек
 function initSettingsPage() {
     var workInput = document.getElementById("workInput");
 
-    // Если такого элемента нет, значит это не страница настроек
     if (workInput === null) {
         return;
     }
