@@ -443,31 +443,192 @@ input {
     color: #cfcfe6;
 }
 
-/* Адаптивность */
+/* Адаптивность для планшетов */
+@media (max-width: 900px) {
+    .app {
+        width: 94%;
+    }
 
-@media (max-width: 850px) {
     .header {
         flex-direction: column;
         align-items: flex-start;
     }
 
-    .hero-grid,
+    .nav {
+        width: 100%;
+        justify-content: center;
+    }
+
+    .hero-grid {
+        grid-template-columns: 1fr;
+    }
+
     .stats-grid,
     .steps {
         grid-template-columns: 1fr;
     }
 
+    .timer-card,
+    .info-panel,
+    .page-card {
+        padding: 26px;
+    }
+
+    .settings-card {
+        max-width: 100%;
+    }
+
+    .settings-form {
+        max-width: 100%;
+    }
+}
+
+
+/* Адаптивность для телефонов */
+@media (max-width: 600px) {
+    .app {
+        width: 95%;
+        padding: 15px 0;
+    }
+
+    .header {
+        padding: 16px;
+        border-radius: 18px;
+    }
+
+    .brand {
+        width: 100%;
+    }
+
+    .logo {
+        width: 50px;
+        height: 50px;
+        font-size: 28px;
+    }
+
+    .brand h1 {
+        font-size: 22px;
+    }
+
+    .brand p {
+        font-size: 13px;
+    }
+
+    .nav {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 8px;
+    }
+
+    .nav-link {
+        text-align: center;
+        padding: 10px 8px;
+        font-size: 14px;
+    }
+
+    main {
+        margin-top: 18px;
+    }
+
+    .timer-card,
+    .info-panel,
+    .page-card {
+        padding: 20px;
+        border-radius: 22px;
+    }
+
+    .timer-card h2,
+    .info-panel h2,
+    .page-card h2 {
+        font-size: 26px;
+    }
+
     .circle {
-        width: 240px;
-        height: 240px;
+        width: 220px;
+        height: 220px;
+        margin: 22px auto;
     }
 
     .circle-center {
-        width: 185px;
-        height: 185px;
+        width: 165px;
+        height: 165px;
     }
 
     .time {
-        font-size: 42px;
+        font-size: 38px;
     }
+
+    .mode-buttons,
+    .control-buttons {
+        flex-direction: column;
+    }
+
+    .mode-buttons button,
+    .control-buttons button {
+        width: 100%;
+    }
+
+    .feature {
+        padding: 14px;
+    }
+
+    .feature-icon {
+        min-width: 42px;
+        height: 42px;
+        font-size: 21px;
+    }
+
+    .mini-stats {
+        grid-template-columns: 1fr;
+    }
+
+    .stats-grid,
+    .steps {
+        grid-template-columns: 1fr;
+    }
+
+    .stat-box,
+    .step {
+        padding: 20px;
+    }
+
+    input {
+        width: 100%;
+    }
+
+    .settings-form button {
+        width: 100%;
+    }
+
+    .footer {
+        font-size: 13px;
+        padding: 0 10px;
+    }
+}
+
+
+/* Адаптивность для очень маленьких экранов */
+@media (max-width: 380px) {
+    .nav {
+        grid-template-columns: 1fr;
+    }
+
+    .circle {
+        width: 190px;
+        height: 190px;
+    }
+
+    .circle-center {
+        width: 145px;
+        height: 145px;
+    }
+
+    .time {
+        font-size: 32px;
+    }
+
+    .brand h1 {
+        font-size: 20px;
+    }
+}
 }
