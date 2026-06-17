@@ -1,12 +1,12 @@
 // Переменные таймера
-var workMinutes = 25;
-var breakMinutes = 5;
+let workMinutes = 25;
+let breakMinutes = 5;
 
-var currentMode = "work";
-var totalSeconds = 25 * 60;
-var remainingSeconds = totalSeconds;
+let currentMode = "work";
+let totalSeconds = 25 * 60;
+let remainingSeconds = totalSeconds;
 
-var timer = null;
+let timer = null;
 
 
 // Запуск после загрузки страницы
@@ -23,8 +23,8 @@ window.onload = function () {
 
 // Настройки
 function loadSettings() {
-    var savedWork = localStorage.getItem("workMinutes");
-    var savedBreak = localStorage.getItem("breakMinutes");
+    const savedWork = localStorage.getItem("workMinutes");
+    const savedBreak = localStorage.getItem("breakMinutes");
 
     if (savedWork !== null) {
         workMinutes = Number(savedWork);
@@ -41,7 +41,7 @@ function loadSettings() {
 
 // Статистика
 function getPomodoroCount() {
-    var value = localStorage.getItem("pomodoroCount");
+    const value = localStorage.getItem("pomodoroCount");
 
     if (value === null) {
         return 0;
@@ -52,7 +52,7 @@ function getPomodoroCount() {
 
 
 function getFocusMinutes() {
-    var value = localStorage.getItem("focusMinutes");
+    const value = localStorage.getItem("focusMinutes");
 
     if (value === null) {
         return 0;
@@ -70,18 +70,18 @@ function saveStats(pomodoroCount, focusMinutes) {
 
 // Страница таймера
 function initTimerPage() {
-    var timeText = document.getElementById("time");
+    const timeText = document.getElementById("time");
 
     if (timeText === null) {
         return;
     }
 
-    var startBtn = document.getElementById("startBtn");
-    var pauseBtn = document.getElementById("pauseBtn");
-    var resetBtn = document.getElementById("resetBtn");
+    const startBtn = document.getElementById("startBtn");
+    const pauseBtn = document.getElementById("pauseBtn");
+    const resetBtn = document.getElementById("resetBtn");
 
-    var workBtn = document.getElementById("workBtn");
-    var breakBtn = document.getElementById("breakBtn");
+    const workBtn = document.getElementById("workBtn");
+    const breakBtn = document.getElementById("breakBtn");
 
     startBtn.onclick = startTimer;
     pauseBtn.onclick = pauseTimer;
@@ -96,14 +96,14 @@ function initTimerPage() {
 
 // Обновление интерфейса
 function updateTime() {
-    var timeText = document.getElementById("time");
+    const timeText = document.getElementById("time");
 
     if (timeText === null) {
         return;
     }
 
-    var minutes = Math.floor(remainingSeconds / 60);
-    var seconds = remainingSeconds % 60;
+    const minutes = Math.floor(remainingSeconds / 60);
+    let seconds = remainingSeconds % 60;
 
     if (seconds < 10) {
         seconds = "0" + seconds;
@@ -114,17 +114,17 @@ function updateTime() {
 
 
 function updateCircle() {
-    var circle = document.getElementById("circle");
+    const circle = document.getElementById("circle");
 
     if (circle === null) {
         return;
     }
 
-    var passedSeconds = totalSeconds - remainingSeconds;
-    var percent = passedSeconds / totalSeconds;
-    var degrees = percent * 360;
+    const passedSeconds = totalSeconds - remainingSeconds;
+    const percent = passedSeconds / totalSeconds;
+    const degrees = percent * 360;
 
-    var color = "#ff5c5c";
+    let color = "#ff5c5c";
 
     if (currentMode === "break") {
         color = "#4dd599";
@@ -135,13 +135,37 @@ function updateCircle() {
 }
 
 
+// Подсветка кнопок управления
+function setActiveControlButton(activeButtonId) {
+    const startBtn = document.getElementById("startBtn");
+    const pauseBtn = document.getElementById("pauseBtn");
+    const resetBtn = document.getElementById("resetBtn");
+
+    if (startBtn === null || pauseBtn === null || resetBtn === null) {
+        return;
+    }
+
+    startBtn.classList.remove("control-active");
+    pauseBtn.classList.remove("control-active");
+    resetBtn.classList.remove("control-active");
+
+    const activeButton = document.getElementById(activeButtonId);
+
+    if (activeButton !== null) {
+        activeButton.classList.add("control-active");
+    }
+}
+
+
 // Управление таймером
 function startTimer() {
-    var timerStatus = document.getElementById("timerStatus");
+    const timerStatus = document.getElementById("timerStatus");
 
     if (timer !== null) {
         return;
     }
+
+    setActiveControlButton("startBtn");
 
     if (timerStatus !== null) {
         timerStatus.textContent = "Таймер работает";
@@ -161,10 +185,12 @@ function startTimer() {
 
 
 function pauseTimer() {
-    var timerStatus = document.getElementById("timerStatus");
+    const timerStatus = document.getElementById("timerStatus");
 
     clearInterval(timer);
     timer = null;
+
+    setActiveControlButton("pauseBtn");
 
     if (timerStatus !== null) {
         timerStatus.textContent = "Пауза";
@@ -173,7 +199,7 @@ function pauseTimer() {
 
 
 function resetTimer() {
-    var timerStatus = document.getElementById("timerStatus");
+    const timerStatus = document.getElementById("timerStatus");
 
     clearInterval(timer);
     timer = null;
@@ -185,6 +211,8 @@ function resetTimer() {
     }
 
     remainingSeconds = totalSeconds;
+
+    setActiveControlButton("resetBtn");
 
     if (timerStatus !== null) {
         timerStatus.textContent = "Сброшено";
@@ -200,8 +228,8 @@ function finishTimer() {
     timer = null;
 
     if (currentMode === "work") {
-        var pomodoroCount = getPomodoroCount();
-        var focusMinutes = getFocusMinutes();
+        let pomodoroCount = getPomodoroCount();
+        let focusMinutes = getFocusMinutes();
 
         pomodoroCount = pomodoroCount + 1;
         focusMinutes = focusMinutes + workMinutes;
@@ -222,10 +250,10 @@ function finishTimer() {
 
 // Режимы
 function setWorkMode() {
-    var modeTitle = document.getElementById("modeTitle");
-    var timerStatus = document.getElementById("timerStatus");
-    var workBtn = document.getElementById("workBtn");
-    var breakBtn = document.getElementById("breakBtn");
+    const modeTitle = document.getElementById("modeTitle");
+    const timerStatus = document.getElementById("timerStatus");
+    const workBtn = document.getElementById("workBtn");
+    const breakBtn = document.getElementById("breakBtn");
 
     clearInterval(timer);
     timer = null;
@@ -247,16 +275,18 @@ function setWorkMode() {
         breakBtn.classList.remove("active");
     }
 
+    setActiveControlButton("resetBtn");
+
     updateTime();
     updateCircle();
 }
 
 
 function setBreakMode() {
-    var modeTitle = document.getElementById("modeTitle");
-    var timerStatus = document.getElementById("timerStatus");
-    var workBtn = document.getElementById("workBtn");
-    var breakBtn = document.getElementById("breakBtn");
+    const modeTitle = document.getElementById("modeTitle");
+    const timerStatus = document.getElementById("timerStatus");
+    const workBtn = document.getElementById("workBtn");
+    const breakBtn = document.getElementById("breakBtn");
 
     clearInterval(timer);
     timer = null;
@@ -278,6 +308,8 @@ function setBreakMode() {
         workBtn.classList.remove("active");
     }
 
+    setActiveControlButton("resetBtn");
+
     updateTime();
     updateCircle();
 }
@@ -285,13 +317,13 @@ function setBreakMode() {
 
 // Страница статистики
 function initStatsPage() {
-    var pomodoroCountText = document.getElementById("pomodoroCount");
+    const pomodoroCountText = document.getElementById("pomodoroCount");
 
     if (pomodoroCountText === null) {
         return;
     }
 
-    var resetStatsBtn = document.getElementById("resetStatsBtn");
+    const resetStatsBtn = document.getElementById("resetStatsBtn");
 
     updateStatsPage();
 
@@ -303,16 +335,16 @@ function initStatsPage() {
 
 
 function updateStatsPage() {
-    var pomodoroCountText = document.getElementById("pomodoroCount");
-    var focusMinutesText = document.getElementById("focusMinutes");
-    var levelText = document.getElementById("levelText");
+    const pomodoroCountText = document.getElementById("pomodoroCount");
+    const focusMinutesText = document.getElementById("focusMinutes");
+    const levelText = document.getElementById("levelText");
 
     if (pomodoroCountText === null) {
         return;
     }
 
-    var pomodoroCount = getPomodoroCount();
-    var focusMinutes = getFocusMinutes();
+    const pomodoroCount = getPomodoroCount();
+    const focusMinutes = getFocusMinutes();
 
     pomodoroCountText.textContent = pomodoroCount;
     focusMinutesText.textContent = focusMinutes;
@@ -328,8 +360,8 @@ function updateStatsPage() {
 
 
 function updateMiniStats() {
-    var smallPomodoroCount = document.getElementById("smallPomodoroCount");
-    var smallFocusMinutes = document.getElementById("smallFocusMinutes");
+    const smallPomodoroCount = document.getElementById("smallPomodoroCount");
+    const smallFocusMinutes = document.getElementById("smallFocusMinutes");
 
     if (smallPomodoroCount === null) {
         return;
@@ -342,22 +374,22 @@ function updateMiniStats() {
 
 // Страница настроек
 function initSettingsPage() {
-    var workInput = document.getElementById("workInput");
+    const workInput = document.getElementById("workInput");
 
     if (workInput === null) {
         return;
     }
 
-    var breakInput = document.getElementById("breakInput");
-    var saveSettingsBtn = document.getElementById("saveSettingsBtn");
-    var saveMessage = document.getElementById("saveMessage");
+    const breakInput = document.getElementById("breakInput");
+    const saveSettingsBtn = document.getElementById("saveSettingsBtn");
+    const saveMessage = document.getElementById("saveMessage");
 
     workInput.value = workMinutes;
     breakInput.value = breakMinutes;
 
     saveSettingsBtn.onclick = function () {
-        var newWorkMinutes = Number(workInput.value);
-        var newBreakMinutes = Number(breakInput.value);
+        const newWorkMinutes = Number(workInput.value);
+        const newBreakMinutes = Number(breakInput.value);
 
         if (newWorkMinutes > 0 && newBreakMinutes > 0) {
             localStorage.setItem("workMinutes", newWorkMinutes);
