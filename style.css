@@ -236,6 +236,16 @@ button:hover {
     background: linear-gradient(135deg, #ff4242, #ff7642);
 }
 
+
+.control-buttons button.control-active {
+    background: linear-gradient(135deg, #ff5c5c, #ff8a5c);
+    box-shadow: 0 12px 25px rgba(255, 92, 92, 0.3);
+}
+
+.control-buttons button.control-active:hover {
+    background: linear-gradient(135deg, #ff4242, #ff7642);
+}
+
 .mode-btn.active {
     background: white;
     color: #22223b;
